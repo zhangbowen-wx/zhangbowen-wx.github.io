@@ -1,0 +1,154 @@
+body,h1,h2,h3,h4,h5,h6,p,ul,li{margin:0; padding:0}
+li{list-style: none;}
+body{font-family: 微软雅黑;}
+a{text-decoration-line: none;}
+
+
+.seg {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.seg .hr-edge-weak {
+    border: 0;
+    padding-top: 2px;
+    background: linear-gradient(to right, transparent, #d0d0d5, transparent);
+}
+
+
+.title{
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 100px;
+}
+.title h1{color: black; font-size: 40px; text-align: center; font-weight: bold;}
+
+
+.conf_info{
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 20px;
+}
+.conf_info h1{
+    font-size: 25px; text-align: center; font-weight: normal; 
+}
+
+.authors {margin-top: 20px;}
+.authors ul {
+    display: table;		 /*这里是关键步骤：*/
+    margin: 0 auto;      /*让ul在div中水平居中 */
+}
+.authors ul::after {     /*清除浮动 */
+    content: '';
+    display: inline-block;
+    clear: both;
+}
+.authors ul li {
+    float: left;         /*让li浮动起来 横向排列*/
+    text-align: center;  /*让li在ul中水平居中*/
+    height: 40px;
+    line-height: 40px;   /*垂直居中*/
+    width: 150px;        /*任意设置li的宽度，不设置宽度的话也可以设置padding*/
+}
+.authors ul li a{
+    color:blue
+}
+
+
+.institution {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 5px;}
+.institution ul {
+    display: table;		 /*这里是关键步骤：*/
+    margin: 0 auto;      /*让ul在div中水平居中 */
+}
+.institution ul::after {     /*清除浮动 */
+    content: '';
+    display: inline-block;
+    clear: both;
+}
+.institution ul li {
+    float: left;         /*让li浮动起来 横向排列*/
+    text-align: center;  /*让li在ul中水平居中*/
+    height: 40px;
+    line-height: 40px;   /*垂直居中*/
+    width: 250px;        /*任意设置li的宽度，不设置宽度的话也可以设置padding*/
+}
+.institution ul li a{
+    color:black
+}
+
+
+.figure_full_width{
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 20px;
+    text-align: center;
+}
+.figure_full_width img{
+    width: 100%;
+}
+.figure_full_width p{
+    text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.figure_custom{
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 20px;
+    text-align: center;
+}
+.figure_custom p{
+    text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.paragraph{
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 20px;
+}
+.paragraph h1{
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+}
+.paragraph p{
+    text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+.download{
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+.download h1{
+    font-size: 25px;
+    font-weight: bold;
+}
+.download .list{
+    display: flex;
+}
+.download .list .file{
+    margin-top: 10px;
+    margin-right: 20px;
+}
+.download .list .file ul li img{width: 80px;}
+.download .list .file a{color: black;}
+
+
+
+
+

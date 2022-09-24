@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shape Completion with Points in the Shadow</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+</head>
+
+<body>
+<!--Title-->
+<div class="title">
+    <h1>Shape Completion with Points in the Shadow</h1>
+</div>
+
+<!--Conference or Journal Information-->
+<div class="conf_info">
+    <h1>Proceedings of SIGGRAPH Aisa 2022</h1>
+</div>
+
+<!--Authors-->
+<div class="authors">
+    <ul>
+        <li><a href=""> Bowen Zhang<sup>1</sup> </a></li>
+        <li><a href=""> Xi Zhao<sup>1*</sup> </a></li>
+        <li><a href=""> He Wang<sup>2</sup> </a></li>
+        <li><a href=""> Ruizhen Hu<sup>3</sup> </a></li>
+    </ul>
+</div>
+
+<!--Institutions-->
+<div class="institution">
+    <ul>
+        <li> <sup>1</sup>Xi'an Jiaotong University </li>
+        <li> <sup>2</sup>Leeds University </li>
+        <li> <sup>3</sup>Shenzhen University </li>
+    </ul>
+</div>
+
+<div class="seg">
+    <hr class="hr-edge-weak">
+</div>
+
+<!--Teaser-->
+<div class="figure_full_width">
+    <img src="./teaser.png">
+    <p>Fig. 1. Given a single-view partial scan, our method considers the volume that is shadowed by the observed points and generates more complete and clean results compared with ME-PCN, PoinTr and SnowflakeNet.
+    </p>
+</div>
+
+<!--Abstract-->
+<div class="paragraph">
+    <h1>Abstract</h1>
+    <p>Single-view point cloud completion aims to recover the full geometry of an object based on only limited observation, which is extremely hard due to the data sparsity and occlusion. The core challenge is to generate plausible geometries to fill the unobserved part of the object based on a partial scan, which is under-constrained and suffers from a huge solution space. Inspired by the classic shadow volume technique in computer graphics, we propose a new method to reduce the solution space effectively. Our method considers the camera a light source that casts rays toward the object. Such light rays build a reasonably constrained but sufficiently expressive basis for completion. The completion process is then formulated as a point displacement optimization problem. Points are initialized at the partial scan and then moved to their goal locations with two types of movements for each point: directional movements along the light rays and constrained local movement for shape refinement. We design neural networks to predict the ideal point movements to get the completion results. We demonstrate that our method is accurate, robust, and generalizable through exhaustive evaluation and comparison. Moreover, it outperforms state-of-the-art methods qualitatively and quantitatively on MVP datasets.
+    </p>
+</div>
+
+
+<div class="figure_custom">
+    <div>
+        <img src="./completion_process.png" width="65%">
+    </div>
+    <p>
+        Fig. 2. The completion along rays. (a)we duplicate the observed point multiple times to get the larger red points, and move them along the ray with offset $d_i$. (b) we split each red point multiple times to get the blue points and spread them to a neighborhood of the red point (the transparent circle).
+    </p>
+</div>
+
+
+<div class="figure_full_width">
+    <img src="./overview.png">
+    <p>Fig. 3. The overview of our method. Given the camera location and partial scan, we compute a batch of rays that is the network's input(a). For each ray, we first predict offset $O'$ that is visualized by lines in (b), and then predict an adjustment for each offset that is visualized in (c), where green points represent positive adjustment; red points represent negative adjustment. With the initial completion result(d), we further apply a two-step refinement to get a smoother result (e) and final result (f).
+    </p>
+</div>
+
+
+<div class="figure_custom">
+    <div>
+        <img src="./Computation_of_SCD.png" width="65%">
+    </div>
+    <p>
+        Fig. 6. The computation of $SCD_1$ and $SCD_2$.
+    </p>
+</div>
+
+
+<div class="figure_full_width">
+    <img src="./overall_comparison.png">
+    <p>Fig. 7. Visualized completion results for comparison on MVP dataset.
+    </p>
+</div>
+
+
+<div class="figure_full_width">
+    <img src="./2part_comparison.png">
+    <p>Fig. 6.(in supp) The completion results are visualized with two parts for comparison. The blue points show the completion for observed part, while yellow points show the completion for unobserved part.
+    </p>
+</div>
+
+
+<!--Code and Data-->
+<div class="paragraph">
+    <h1>Data & Code</h1>
+    <p>The source code and data used in this paper can be found in the following link.</p>
+    <p>link: <a href="https://github.com/XiangyuSu611/TMT">https://github.com/XiangyuSu611/TMT</a></p>
+</div>
+
+<!--Acknowledgements-->
+<div class="paragraph">
+    <h1>Acknowledgements</h1>
+    <p>This work was supported in part by 
+        National Natural Science Foundation of China (62072366, 61872250), 
+        Key R&D project of Shaanxi Province (2021QFY01-03HZ),
+        China Postdoctoral Science Foundation Funded Project (2020M673407), 
+        Guangdong Natural Science Foundation (2021B1515020085) and 
+        Shenzhen Science and Technology Program (RCYX20210609103121030).</p>
+</div>
+
+
+<div class="download">
+    <h1>Download</h1>
+    <div class="list">
+        <div class="file">
+            <a href="">
+            <ul>
+                <li> <img src="../../assets/pdf-icon.jpeg"> </li>
+                <li> Paper </li>
+                <l1> [7.4M] </l1>
+            </ul>
+            </a>
+        </div>
+        <div class="file">
+            <a href="">
+            <ul>
+                <li> <img src="../../assets/pdf-icon.jpeg"> </li>
+                <li> Supp </li>
+                <l1> [34.4M] </l1>
+            </ul>
+            </a>
+        </div>
+        <div class="file">
+            <a href="">
+            <ul>
+                <li> <img src="../../assets/video-icon.jpeg"> </li>
+                <li> Video </li>
+                <l1> [100.4M] </l1>
+            </ul>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
