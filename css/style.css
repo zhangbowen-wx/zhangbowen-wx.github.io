@@ -32,53 +32,25 @@ a{text-decoration-line: none;}
     font-size: 3vh; text-align: center; font-weight: normal; 
 }
 
-.authors {margin-top: 1.5%;}
-.authors ul {
-    display: table;		 /*这里是关键步骤：*/
-    margin: 0 auto;      /*让ul在div中水平居中 */
-}
-.authors ul::after {     /*清除浮动 */
-    content: '';
-    display: inline-block;
-    clear: both;
-}
-.authors ul li {
-    float: left;         /*让li浮动起来 横向排列*/
-    text-align: center;  /*让li在ul中水平居中*/
-    height: 4vh;
-    line-height: 4vh;   /*垂直居中*/
-    width: 12vw;        /*任意设置li的宽度，不设置宽度的话也可以设置padding*/
+.authors {
+    margin-top: 1.5%;
+    text-align: center;
     font-size: 1.8vh;
 }
-.authors ul li a{
+.authors a{
     color:blue;
 }
 
 
 .institution {
-    margin-left: 10%;
-    margin-right: 10%;
-}
-.institution ul {
-    display: table;		 /*这里是关键步骤：*/
-    margin: 0 auto;      /*让ul在div中水平居中 */
-}
-.institution ul::after {     /*清除浮动 */
-    content: '';
-    display: inline-block;
-    clear: both;
-}
-.institution ul li {
-    float: left;         /*让li浮动起来 横向排列*/
-    text-align: center;  /*让li在ul中水平居中*/
-    height: 4vh;
-    line-height: 4vh;   /*垂直居中*/
-    width: 20vw;        /*任意设置li的宽度，不设置宽度的话也可以设置padding*/
+    margin-top: 1.5%;
+    text-align: center;
     font-size: 1.8vh;
 }
-.institution ul li a{
-    color:black
+.institution a{
+    color:blue;
 }
+
 
 
 .figure_full_width{
