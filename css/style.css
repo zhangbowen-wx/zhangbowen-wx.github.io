@@ -5,34 +5,34 @@ a{text-decoration-line: none;}
 
 
 .seg {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 .seg .hr-edge-weak {
     border: 0;
-    padding-top: 2px;
-    background: linear-gradient(to right, transparent, #d0d0d5, transparent);
+    padding-top: 0.5vh;
+    background: linear-gradient(to right, transparent, 	#696969, transparent);
 }
 
 
 .title{
     margin-left: 10%;
     margin-right: 10%;
-    margin-top: 100px;
+    margin-top: 5%;
 }
-.title h1{color: black; font-size: 40px; text-align: center; font-weight: bold;}
+.title h1{color: black; font-size: 4vh; text-align: center; font-weight: bold;}
 
 
 .conf_info{
     margin-left: 10%;
     margin-right: 10%;
-    margin-top: 20px;
+    margin-top: 2%;
 }
 .conf_info h1{
-    font-size: 25px; text-align: center; font-weight: normal; 
+    font-size: 3vh; text-align: center; font-weight: normal; 
 }
 
-.authors {margin-top: 20px;}
+.authors {margin-top: 1.5%;}
 .authors ul {
     display: table;		 /*这里是关键步骤：*/
     margin: 0 auto;      /*让ul在div中水平居中 */
@@ -45,19 +45,20 @@ a{text-decoration-line: none;}
 .authors ul li {
     float: left;         /*让li浮动起来 横向排列*/
     text-align: center;  /*让li在ul中水平居中*/
-    height: 40px;
-    line-height: 40px;   /*垂直居中*/
-    width: 150px;        /*任意设置li的宽度，不设置宽度的话也可以设置padding*/
+    height: 4vh;
+    line-height: 4vh;   /*垂直居中*/
+    width: 12vw;        /*任意设置li的宽度，不设置宽度的话也可以设置padding*/
+    font-size: 1.8vh;
 }
 .authors ul li a{
-    color:blue
+    color:blue;
 }
 
 
 .institution {
     margin-left: 10%;
     margin-right: 10%;
-    margin-top: 5px;}
+}
 .institution ul {
     display: table;		 /*这里是关键步骤：*/
     margin: 0 auto;      /*让ul在div中水平居中 */
@@ -70,9 +71,10 @@ a{text-decoration-line: none;}
 .institution ul li {
     float: left;         /*让li浮动起来 横向排列*/
     text-align: center;  /*让li在ul中水平居中*/
-    height: 40px;
-    line-height: 40px;   /*垂直居中*/
-    width: 250px;        /*任意设置li的宽度，不设置宽度的话也可以设置padding*/
+    height: 4vh;
+    line-height: 4vh;   /*垂直居中*/
+    width: 20vw;        /*任意设置li的宽度，不设置宽度的话也可以设置padding*/
+    font-size: 1.8vh;
 }
 .institution ul li a{
     color:black
@@ -82,7 +84,7 @@ a{text-decoration-line: none;}
 .figure_full_width{
     margin-left: 10%;
     margin-right: 10%;
-    margin-top: 20px;
+    margin-top: 1.5%;
     text-align: center;
 }
 .figure_full_width img{
@@ -98,7 +100,7 @@ a{text-decoration-line: none;}
 .figure_custom{
     margin-left: 10%;
     margin-right: 10%;
-    margin-top: 20px;
+    margin-top: 1.5%;
     text-align: center;
 }
 .figure_custom p{
@@ -111,10 +113,10 @@ a{text-decoration-line: none;}
 .paragraph{
     margin-left: 10%;
     margin-right: 10%;
-    margin-top: 20px;
+    margin-top: 1.5%;
 }
 .paragraph h1{
-    font-size: 25px;
+    font-size: 2.5vh;
     font-weight: bold;
     margin-left: auto;
     margin-right: auto;
@@ -131,21 +133,21 @@ a{text-decoration-line: none;}
 .download{
     margin-left: 10%;
     margin-right: 10%;
-    margin-top: 20px;
-    margin-bottom: 100px;
+    margin-top: 1.5%;
+    margin-bottom: 5%;
 }
 .download h1{
-    font-size: 25px;
+    font-size: 2.5vh;
     font-weight: bold;
 }
 .download .list{
     display: flex;
 }
 .download .list .file{
-    margin-top: 10px;
-    margin-right: 20px;
+    margin-top: 1vh;
+    margin-right: 2vw;
 }
-.download .list .file ul li img{width: 80px;}
+.download .list .file ul li img{width: 5vw;}
 .download .list .file a{color: black;}
 
 
