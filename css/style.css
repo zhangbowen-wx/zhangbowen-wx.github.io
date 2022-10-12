@@ -16,16 +16,16 @@ a{text-decoration-line: none;}
 
 
 .title{
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 10%;
+    margin-right: 10%;
     margin-top: 100px;
 }
 .title h1{color: black; font-size: 40px; text-align: center; font-weight: bold;}
 
 
 .conf_info{
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 10%;
+    margin-right: 10%;
     margin-top: 20px;
 }
 .conf_info h1{
@@ -55,8 +55,8 @@ a{text-decoration-line: none;}
 
 
 .institution {
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 10%;
+    margin-right: 10%;
     margin-top: 5px;}
 .institution ul {
     display: table;		 /*这里是关键步骤：*/
@@ -80,8 +80,8 @@ a{text-decoration-line: none;}
 
 
 .figure_full_width{
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 10%;
+    margin-right: 10%;
     margin-top: 20px;
     text-align: center;
 }
@@ -96,8 +96,8 @@ a{text-decoration-line: none;}
 
 
 .figure_custom{
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 10%;
+    margin-right: 10%;
     margin-top: 20px;
     text-align: center;
 }
@@ -109,8 +109,8 @@ a{text-decoration-line: none;}
 
 
 .paragraph{
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 10%;
+    margin-right: 10%;
     margin-top: 20px;
 }
 .paragraph h1{
@@ -129,8 +129,8 @@ a{text-decoration-line: none;}
 
 
 .download{
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 10%;
+    margin-right: 10%;
     margin-top: 20px;
     margin-bottom: 100px;
 }
