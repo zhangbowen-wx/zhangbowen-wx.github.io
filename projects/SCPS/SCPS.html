@@ -45,6 +45,10 @@
     </p>
 </div>
 
+<div class="seg">
+    <hr class="hr-edge-weak">
+</div>
+
 <!--Abstract-->
 <div class="paragraph">
     <h1>Abstract</h1>
@@ -52,8 +56,18 @@
     </p>
 </div>
 
+<div class="seg">
+    <hr class="hr-edge-weak">
+</div>
 
-<div class="figure_custom">
+<div class="paragraph">
+    <h1>Method</h1>
+    <p>Our method considers the camera a light source that casts rays toward the object. We divide the whole space into two parts, the forbidden volume and the shadow volume, the forbidden volume is the spatial area that cannot do point cloud completion, instead we should complete the partial point cloud within the shadow volume. To achieve this, we formulate the completion process as a point displacement problem. Points are initialized at the partial scan and then moved to their goal locations with two types of movements. First, we put multiple points on each observed point and move them along the ray to produce the initial guesses of the complete geometry. Second, we split each red point into multiple blue points and move them within constrained local neighborhood. We design a neural network to do this automatically. 
+    The network includes two main modules: the offset prediction module and the offset-constrained refinement.Given the camera location and partial scan as input, the offset prediction module is designed to predict the movement along rays, and the offset constrained refinement module estimates the local movement.       
+    </p>
+</div>
+
+<div class="figure_custom_width_long_text">
     <div>
         <img src="./completion_process.png" width="65%">
     </div>
@@ -69,8 +83,21 @@
     </p>
 </div>
 
+<div class="seg">
+    <hr class="hr-edge-weak">
+</div>
 
-<div class="figure_custom">
+<div class="paragraph">
+    <h1>New Metric: Split Chamfer Distance(SCD)</h1>
+    <p> We use chamfer distance, F-Score and Density-aware chamfer distance to evaluate the completion results. 
+        While these metrics cannot evaluate completion quality of visible part and missing part, because they are indiscriminative to the two parts, which suggests that they lack granularity. 
+        To provide sufficient details on the completion quality, we propose a new metric named “split chamfer distance”, that includes two values, SCD1 and SCD2.
+        SCD1 is used for evaluating the completion quality of visible part. SCD2 is used for evaluating the completion quality of missing part. 
+
+    </p>
+</div>
+
+<div class="figure_custom_width_short_text">
     <div>
         <img src="./Computation_of_SCD.png" width="65%">
     </div>
@@ -79,10 +106,21 @@
     </p>
 </div>
 
+<div class="seg">
+    <hr class="hr-edge-weak">
+</div>
+
+<div class="paragraph">
+    <h1>Completion Results</h1>
+    <p> We compare our completion results with other methods.
+        In general, our completion results are cleaner than others’ and retain more geometry details in the partial scan.
+    </p>
+</div>
 
 <div class="figure_full_width">
     <img src="./overall_comparison.png">
-    <p>Fig. 7. Visualized completion results for comparison on MVP dataset.
+    <p>
+        Fig. 7. Visualized completion results for comparison on MVP dataset.
     </p>
 </div>
 
@@ -93,12 +131,15 @@
     </p>
 </div>
 
+<div class="seg">
+    <hr class="hr-edge-weak">
+</div>
 
 <!--Code and Data-->
 <div class="paragraph">
     <h1>Data & Code</h1>
     <p>The source code and data used in this paper can be found in the following link.</p>
-    <!--<p>link: <a href="https://github.com/XiangyuSu611/TMT">https://github.com/XiangyuSu611/TMT</a></p>-->
+    <p>link: <a href="https://github.com/zhangbowen-wx/Shape-Completion-with-Points-in-the-Shadow">https://github.com/zhangbowen-wx/Shape-Completion-with-Points-in-the-Shadow</a></p>
 </div>
 
 <!--Acknowledgements-->

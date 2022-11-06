@@ -68,13 +68,26 @@ a{text-decoration-line: none;}
 }
 
 
-.figure_custom{
+.figure_custom_width_short_text{
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 1.5%;
     text-align: center;
 }
-.figure_custom p{
+.figure_custom_width_short_text p{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.figure_custom_width_long_text{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 1.5%;
+    text-align: center;
+}
+.figure_custom_width_long_text p{
     text-align: justify;
     margin-left: auto;
     margin-right: auto;
