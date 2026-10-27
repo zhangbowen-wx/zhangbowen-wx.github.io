@@ -49,22 +49,6 @@
     reveals.forEach(function (el) { el.classList.add('in'); });
   }
 
-  /* ---------- Count-up stats ---------- */
-  if (!reduceMotion) {
-    document.querySelectorAll('[data-count]').forEach(function (el) {
-      var target = +el.getAttribute('data-count');
-      var start = null, dur = 1400;
-      el.textContent = '0';
-      function step(ts) {
-        if (!start) start = ts;
-        var p = Math.min((ts - start) / dur, 1);
-        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
-        if (p < 1) requestAnimationFrame(step);
-      }
-      setTimeout(function () { requestAnimationFrame(step); }, 300);
-    });
-  }
-
   /* ---------- Publication filter & search ---------- */
   var pubs = Array.prototype.slice.call(document.querySelectorAll('.pub'));
   var groups = document.querySelectorAll('.year-group');
