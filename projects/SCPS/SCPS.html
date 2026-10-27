@@ -1,192 +1,257 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Shape Completion with Points in the Shadow</title>
-    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shape Completion with Points in the Shadow · SIGGRAPH Asia 2022</title>
+  <meta name="description" content="Shape Completion with Points in the Shadow (SIGGRAPH Asia 2022). Single-view point cloud completion inspired by the shadow volume technique.">
+  <meta property="og:title" content="Shape Completion with Points in the Shadow">
+  <meta property="og:description" content="SIGGRAPH Asia 2022 · Bowen Zhang, Xi Zhao, He Wang, Ruizhen Hu">
+  <meta property="og:image" content="teaser.png">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%234f46e5'/><stop offset='1' stop-color='%2306b6d4'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='url(%23g)'/><text x='50' y='67' font-size='48' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'>BZ</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/home.css">
+  <link rel="stylesheet" href="../../css/project.css">
+  <script>
+    (function () {
+      var t = localStorage.getItem('theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 
 <body>
-<!--Title-->
-<div class="title">
-    <h1>Shape Completion with Points in the Shadow</h1>
-</div>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-pdf" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h5"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m12 2 10 5-10 5L2 7zM2 17l10 5 10-5M2 12l10 5 10-5"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path fill="currentColor" d="M10 8.5v7l6-3.5z"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></symbol>
+    <symbol id="i-quote" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 21c3 0 7-1 7-8V5H3v7h4c0 3-1 5-4 5zM14 21c3 0 7-1 7-8V5h-7v7h4c0 3-1 5-4 5z"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></g></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M11 18l-6-6 6-6"/></symbol>
+  </svg>
 
-<!--Conference or Journal Information-->
-<div class="conf_info">
-    <h1>Proceedings of SIGGRAPH Aisa 2022</h1>
-</div>
-
-<!--Authors-->
-<div class="authors">
-    <a href="https://realityanddreams.github.io/"> Bowen&nbsp;Zhang<sup>1</sup> </a> &nbsp;&nbsp;
-    <a href="https://xiaoppx.github.io/home.html"> Xi&nbsp;Zhao<sup>1*</sup> </a> &nbsp;&nbsp;
-    <a href="http://drhewang.com/"> He&nbsp;Wang<sup>2</sup> </a> &nbsp;&nbsp;
-    <a href="https://csse.szu.edu.cn/staff/ruizhenhu/index.htm"> Ruizhen&nbsp;Hu<sup>3</sup> </a>
-</div>
-
-
-<!--Institutions-->
-<div class="institution">
-    <sup>1</sup>Xi'an&nbsp;Jiaotong&nbsp;University &nbsp;&nbsp;
-    <sup>2</sup>University&nbsp;of&nbsp;Leeds &nbsp;&nbsp;
-    <sup>3</sup>Shenzhen&nbsp;University 
-</div>
-
-<div class="seg">
-    <hr class="hr-edge-weak">
-</div>
-
-<!--Teaser-->
-<div class="figure_full_width">
-    <img src="./teaser.png">
-    <p>Fig. 1. Given a single-view partial scan, our method considers the volume that is shadowed by the observed points and generates more complete and clean results compared with ME-PCN, PoinTr and SnowflakeNet.
-    </p>
-</div>
-
-<div class="seg">
-    <hr class="hr-edge-weak">
-</div>
-
-<!--Abstract-->
-<div class="paragraph">
-    <h1>Abstract</h1>
-    <p>Single-view point cloud completion aims to recover the full geometry of an object based on only limited observation, which is extremely hard due to the data sparsity and occlusion. The core challenge is to generate plausible geometries to fill the unobserved part of the object based on a partial scan, which is under-constrained and suffers from a huge solution space. Inspired by the classic shadow volume technique in computer graphics, we propose a new method to reduce the solution space effectively. Our method considers the camera a light source that casts rays toward the object. Such light rays build a reasonably constrained but sufficiently expressive basis for completion. The completion process is then formulated as a point displacement optimization problem. Points are initialized at the partial scan and then moved to their goal locations with two types of movements for each point: directional movements along the light rays and constrained local movement for shape refinement. We design neural networks to predict the ideal point movements to get the completion results. We demonstrate that our method is accurate, robust, and generalizable through exhaustive evaluation and comparison. Moreover, it outperforms state-of-the-art methods qualitatively and quantitatively on MVP datasets.
-    </p>
-</div>
-
-<div class="seg">
-    <hr class="hr-edge-weak">
-</div>
-
-<div class="paragraph">
-    <h1>Method</h1>
-    <p>Our method considers the camera a light source that casts rays toward the object. We divide the whole space into two parts, the forbidden volume and the shadow volume, the forbidden volume is the spatial area that cannot do point cloud completion, instead we should complete the partial point cloud within the shadow volume. To achieve this, we formulate the completion process as a point displacement problem. Points are initialized at the partial scan and then moved to their goal locations with two types of movements. First, we put multiple points on each observed point and move them along the ray to produce the initial guesses of the complete geometry. Second, we split each red point into multiple blue points and move them within constrained local neighborhood. We design a neural network to do this automatically. 
-    The network includes two main modules: the offset prediction module and the offset-constrained refinement.Given the camera location and partial scan as input, the offset prediction module is designed to predict the movement along rays, and the offset constrained refinement module estimates the local movement.       
-    </p>
-</div>
-
-<div class="figure_custom_width">
-    <div>
-        <img src="./completion_process.png" width="65%">
+  <!-- ============ Nav ============ -->
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="../../index.html" class="brand"><span class="brand-dot"></span>Bowen Zhang</a>
+      <div style="display:flex;align-items:center">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#abstract">Abstract</a></li>
+          <li><a href="#video">Video</a></li>
+          <li><a href="#method">Method</a></li>
+          <li><a href="#results">Results</a></li>
+          <li><a href="#bibtex">BibTeX</a></li>
+          <li><a href="../../index.html#publications"><svg style="width:14px;height:14px;vertical-align:-2px;margin-right:4px"><use href="#i-back"/></svg>Home</a></li>
+        </ul>
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
     </div>
-    <p>
-        Fig. 2. The completion process.
-    </p>
-</div>
+  </header>
 
+  <main>
+    <!-- ============ Hero ============ -->
+    <section class="p-hero">
+      <div class="p-wrap">
+        <span class="venue-badge reveal"><i></i>SIGGRAPH Asia 2022 · Conference Paper</span>
+        <h1 class="p-title reveal">Shape Completion with <span class="grad-text">Points in the Shadow</span></h1>
 
-<div class="figure_full_width">
-    <img src="./overview.png">
-    <p>Fig. 3. The overview of our method. Given the camera location and partial scan, we compute a batch of rays that is the network's input(a). For each ray, we first predict offset $O'$ that is visualized by lines in (b), and then predict an adjustment for each offset that is visualized in (c), where green points represent positive adjustment; red points represent negative adjustment. With the initial completion result(d), we further apply a two-step refinement to get a smoother result (e) and final result (f).
-    </p>
-</div>
+        <div class="p-authors reveal">
+          <a href="../../index.html">Bowen Zhang<sup>1</sup></a>
+          <a href="https://xiaoppx.github.io/home.html" target="_blank" rel="noopener">Xi Zhao<sup>1*</sup></a>
+          <a href="http://drhewang.com/" target="_blank" rel="noopener">He Wang<sup>2</sup></a>
+          <a href="https://csse.szu.edu.cn/staff/ruizhenhu/index.htm" target="_blank" rel="noopener">Ruizhen Hu<sup>3</sup></a>
+        </div>
+        <div class="p-affil reveal">
+          <span><sup>1</sup>Xi'an Jiaotong University</span>
+          <span><sup>2</sup>University of Leeds</span>
+          <span><sup>3</sup>Shenzhen University</span>
+        </div>
+        <p class="p-note reveal">* Corresponding author</p>
 
-<div class="seg">
-    <hr class="hr-edge-weak">
-</div>
+        <div class="p-actions reveal">
+          <a class="btn btn-primary" href="./Shape%20Completion%20with%20Points%20in%20the%20Shadow.pdf" target="_blank">
+            <svg><use href="#i-pdf"/></svg>Paper<span class="size">7.4 MB</span>
+          </a>
+          <a class="btn" href="./Shape%20Completion%20with%20Points%20in%20the%20Shadow-supp.pdf" target="_blank">
+            <svg><use href="#i-layers"/></svg>Supplementary<span class="size">33.2 MB</span>
+          </a>
+          <a class="btn" href="#video">
+            <svg><use href="#i-play"/></svg>Video<span class="size">21.7 MB</span>
+          </a>
+          <a class="btn" href="https://github.com/zhangbowen-wx/Shape-Completion-with-Points-in-the-Shadow" target="_blank" rel="noopener">
+            <svg><use href="#i-github"/></svg>Code
+          </a>
+          <a class="btn" href="#bibtex">
+            <svg><use href="#i-quote"/></svg>BibTeX
+          </a>
+        </div>
+      </div>
+    </section>
 
-<div class="paragraph">
-    <h1>New Metric: Split Chamfer Distance(SCD)</h1>
-    <p> We use chamfer distance, F-Score and Density-aware chamfer distance to evaluate the completion results. 
-        While these metrics cannot evaluate completion quality of visible part and missing part, because they are indiscriminative to the two parts, which suggests that they lack granularity. 
-        To provide sufficient details on the completion quality, we propose a new metric named “split chamfer distance”, that includes two values, SCD1 and SCD2.
-        SCD1 is used for evaluating the completion quality of visible part. SCD2 is used for evaluating the completion quality of missing part. 
+    <div class="p-wrap">
+      <!-- Teaser -->
+      <figure class="fig teaser reveal">
+        <div class="fig-frame"><img src="./teaser.png" alt="Teaser: comparison with ME-PCN, PoinTr and SnowflakeNet" width="3308" height="927"></div>
+        <figcaption><b>Figure 1.</b>Given a single-view partial scan, our method considers the volume that is shadowed by the observed points and generates more complete and clean results compared with ME-PCN, PoinTr and SnowflakeNet.</figcaption>
+      </figure>
 
-    </p>
-</div>
+      <!-- ============ Abstract ============ -->
+      <section class="p-sec" id="abstract" style="margin-top:56px">
+        <h2 class="reveal">Abstract</h2>
+        <p class="reveal">
+          Single-view point cloud completion aims to recover the full geometry of an object based on only limited observation, which is extremely hard due to the data sparsity and occlusion. The core challenge is to generate plausible geometries to fill the unobserved part of the object based on a partial scan, which is under-constrained and suffers from a huge solution space. Inspired by the classic <strong>shadow volume</strong> technique in computer graphics, we propose a new method to reduce the solution space effectively. Our method considers the camera a light source that casts rays toward the object. Such light rays build a reasonably constrained but sufficiently expressive basis for completion. The completion process is then formulated as a <strong>point displacement optimization</strong> problem. Points are initialized at the partial scan and then moved to their goal locations with two types of movements for each point: directional movements along the light rays and constrained local movement for shape refinement. We design neural networks to predict the ideal point movements to get the completion results. We demonstrate that our method is accurate, robust, and generalizable through exhaustive evaluation and comparison. Moreover, it outperforms state-of-the-art methods qualitatively and quantitatively on MVP datasets.
+        </p>
+      </section>
 
-<div class="figure_custom_width">
-    <div>
-        <img src="./Computation_of_SCD.png" width="65%">
+      <!-- ============ Video ============ -->
+      <section class="p-sec" id="video">
+        <h2 class="reveal">Fast Forward</h2>
+        <div class="video-frame reveal">
+          <video controls preload="metadata" playsinline poster="./teaser.png">
+            <source src="./40s-fast%20forward.mp4" type="video/mp4">
+            Your browser does not support the video tag. <a href="./40s-fast%20forward.mp4">Download the video</a>.
+          </video>
+        </div>
+      </section>
+
+      <!-- ============ Method ============ -->
+      <section class="p-sec" id="method">
+        <h2 class="reveal">Method</h2>
+        <p class="reveal">
+          Our method considers the camera a light source that casts rays toward the object. We divide the whole space into two parts, the <strong>forbidden volume</strong> and the <strong>shadow volume</strong>. The forbidden volume is the spatial area where completion cannot happen; instead, the partial point cloud should be completed within the shadow volume. To achieve this, we formulate the completion process as a point displacement problem.
+        </p>
+        <div class="ideas reveal" style="margin-top:24px">
+          <div class="idea">
+            <span class="n">01 · Ray casting</span>
+            <h3>Camera as a light source</h3>
+            <p>Rays from the camera through observed points bound where missing geometry can lie.</p>
+          </div>
+          <div class="idea">
+            <span class="n">02 · Offset prediction</span>
+            <h3>Move along rays</h3>
+            <p>Multiple points are placed on each observed point and pushed along its ray as an initial guess.</p>
+          </div>
+          <div class="idea">
+            <span class="n">03 · Refinement</span>
+            <h3>Constrained local moves</h3>
+            <p>Each point is split into several and refined within a constrained local neighborhood.</p>
+          </div>
+        </div>
+        <p class="reveal lead">
+          The network includes two main modules: the <strong>offset prediction module</strong> and the <strong>offset-constrained refinement</strong>. Given the camera location and partial scan as input, the offset prediction module predicts the movement along rays, and the offset-constrained refinement module estimates the local movement.
+        </p>
+
+        <figure class="fig reveal">
+          <div class="fig-frame narrow"><img src="./completion_process.png" alt="The completion process" loading="lazy" width="1240" height="593"></div>
+          <figcaption><b>Figure 2.</b>The completion process.</figcaption>
+        </figure>
+
+        <figure class="fig reveal">
+          <div class="fig-frame"><img src="./overview.png" alt="Method overview" loading="lazy" width="3308" height="731"></div>
+          <figcaption><b>Figure 3.</b>Overview of our method. Given the camera location and partial scan, we compute a batch of rays that is the network's input (a). For each ray, we first predict offset <span class="math">O&prime;</span> that is visualized by lines in (b), and then predict an adjustment for each offset that is visualized in (c), where green points represent positive adjustment and red points represent negative adjustment. With the initial completion result (d), we further apply a two-step refinement to get a smoother result (e) and final result (f).</figcaption>
+        </figure>
+      </section>
+
+      <!-- ============ Metric ============ -->
+      <section class="p-sec" id="metric">
+        <h2 class="reveal">New Metric: Split Chamfer Distance</h2>
+        <p class="reveal">
+          Chamfer distance, F-Score and density-aware chamfer distance are indiscriminative between the visible and missing parts of a shape, so they lack the granularity to tell <em>where</em> a completion succeeds or fails. We propose the <strong>split chamfer distance (SCD)</strong>, which consists of two values:
+        </p>
+        <div class="metrics reveal" style="margin-top:22px">
+          <div class="metric">
+            <span class="sym">SCD<sub>1</sub></span>
+            <p>Evaluates the completion quality of the <strong>visible</strong> part.</p>
+          </div>
+          <div class="metric">
+            <span class="sym">SCD<sub>2</sub></span>
+            <p>Evaluates the completion quality of the <strong>missing</strong> part.</p>
+          </div>
+        </div>
+        <figure class="fig reveal">
+          <div class="fig-frame narrow"><img src="./Computation_of_SCD.png" alt="Computation of SCD1 and SCD2" loading="lazy" width="1654" height="751"></div>
+          <figcaption><b>Figure 6.</b>The computation of <span class="math">SCD<sub>1</sub></span> and <span class="math">SCD<sub>2</sub></span>.</figcaption>
+        </figure>
+      </section>
+
+      <!-- ============ Results ============ -->
+      <section class="p-sec" id="results">
+        <h2 class="reveal">Completion Results</h2>
+        <p class="reveal lead">
+          We compare our completion results with other methods. In general, our results are <strong>cleaner</strong> and <strong>retain more geometric details</strong> from the partial scan.
+        </p>
+        <figure class="fig reveal">
+          <div class="fig-frame"><img src="./overall_comparison.png" alt="Comparison on MVP dataset" loading="lazy" width="3722" height="1712"></div>
+          <figcaption><b>Figure 7.</b>Visualized completion results for comparison on the MVP dataset.</figcaption>
+        </figure>
+        <figure class="fig reveal">
+          <div class="fig-frame"><img src="./2part_comparison.png" alt="Two-part comparison" loading="lazy" width="3308" height="1842"></div>
+          <figcaption><b>Supp. Figure 6.</b>Completion results visualized in two parts. Blue points show the completion of the observed part; yellow points show the completion of the unobserved part.</figcaption>
+        </figure>
+      </section>
+
+      <!-- ============ Code ============ -->
+      <section class="p-sec" id="code">
+        <h2 class="reveal">Data &amp; Code</h2>
+        <p class="reveal lead">The source code and data used in this paper are publicly available.</p>
+        <a class="repo reveal" href="https://github.com/zhangbowen-wx/Shape-Completion-with-Points-in-the-Shadow" target="_blank" rel="noopener">
+          <span class="repo-icon"><svg><use href="#i-github"/></svg></span>
+          <span class="repo-body">
+            <span class="repo-name"><span>zhangbowen-wx / </span>Shape-Completion-with-Points-in-the-Shadow</span>
+            <span class="repo-desc">Official implementation · GitHub</span>
+          </span>
+          <span class="repo-arrow"><svg><use href="#i-arrow"/></svg></span>
+        </a>
+      </section>
+
+      <!-- ============ BibTeX ============ -->
+      <section class="p-sec" id="bibtex">
+        <h2 class="reveal">BibTeX</h2>
+        <div class="bib reveal">
+          <button class="copy-btn" id="copyBib" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+<pre id="bibText"><span class="k">@inproceedings</span>{zhang2022shape,
+  <span class="f">title</span>     = {Shape Completion with Points in the Shadow},
+  <span class="f">author</span>    = {Zhang, Bowen and Zhao, Xi and Wang, He and Hu, Ruizhen},
+  <span class="f">booktitle</span> = {SIGGRAPH Asia 2022 Conference Papers},
+  <span class="f">pages</span>     = {1--9},
+  <span class="f">year</span>      = {2022}
+}</pre>
+        </div>
+      </section>
+
+      <!-- ============ Acknowledgements ============ -->
+      <section class="p-sec" id="ack">
+        <h2 class="reveal">Acknowledgements</h2>
+        <p class="reveal ack">
+          This work was supported in part by National Natural Science Foundation of China (62072366, 61872250), Key R&amp;D project of Shaanxi Province (2021QFY01-03HZ), China Postdoctoral Science Foundation Funded Project (2020M673407), Guangdong Natural Science Foundation (2021B1515020085) and Shenzhen Science and Technology Program (RCYX20210609103121030).
+        </p>
+      </section>
     </div>
-    <p>
-        Fig. 6. The computation of $SCD_1$ and $SCD_2$.
-    </p>
-</div>
+  </main>
 
-<div class="seg">
-    <hr class="hr-edge-weak">
-</div>
-
-<div class="paragraph">
-    <h1>Completion Results</h1>
-    <p> We compare our completion results with other methods.
-        In general, our completion results are cleaner than others’ and retain more geometry details in the partial scan.
-    </p>
-</div>
-
-<div class="figure_full_width">
-    <img src="./overall_comparison.png">
-    <p>
-        Fig. 7. Visualized completion results for comparison on MVP dataset.
-    </p>
-</div>
-
-
-<div class="figure_full_width">
-    <img src="./2part_comparison.png">
-    <p>Fig. 6.(in supp) The completion results are visualized with two parts for comparison. The blue points show the completion for observed part, while yellow points show the completion for unobserved part.
-    </p>
-</div>
-
-<div class="seg">
-    <hr class="hr-edge-weak">
-</div>
-
-<!--Code and Data-->
-<div class="paragraph">
-    <h1>Data & Code</h1>
-    <p>The source code and data used in this paper can be found in the following link.</p>
-    <p>link: <a href="https://github.com/zhangbowen-wx/Shape-Completion-with-Points-in-the-Shadow">https://github.com/zhangbowen-wx/Shape-Completion-with-Points-in-the-Shadow</a></p>
-</div>
-
-<!--Acknowledgements-->
-<div class="paragraph">
-    <h1>Acknowledgements</h1>
-    <p>This work was supported in part by 
-        National Natural Science Foundation of China (62072366, 61872250), 
-        Key R&D project of Shaanxi Province (2021QFY01-03HZ),
-        China Postdoctoral Science Foundation Funded Project (2020M673407), 
-        Guangdong Natural Science Foundation (2021B1515020085) and 
-        Shenzhen Science and Technology Program (RCYX20210609103121030).</p>
-</div>
-
-
-<div class="download">
-    <h1>Download</h1>
-    <div class="list">
-        <div class="file">
-            <a href="./Shape Completion with Points in the Shadow.pdf">
-            <ul>
-                <li> <img src="../../assets/pdf-icon.jpeg"> </li>
-                <li> Paper </li>
-                <l1> [7.4M] </l1>
-            </ul>
-            </a>
-        </div>
-        <div class="file">
-            <a href="./Shape Completion with Points in the Shadow-supp.pdf">
-            <ul>
-                <li> <img src="../../assets/pdf-icon.jpeg"> </li>
-                <li> Supp </li>
-                <l1> [33.2M] </l1>
-            </ul>
-            </a>
-        </div>
-        <div class="file">
-            <a href="./40s-fast forward.mp4">
-            <ul>
-                <li> <img src="../../assets/video-icon.jpeg"> </li>
-                <li> Video </li>
-                <l1> [21.7M] </l1>
-            </ul>
-            </a>
-        </div>
+  <footer>
+    <div class="container">
+      &copy; <span id="year">2026</span> <a href="../../index.html">Bowen Zhang</a> &middot; SIGGRAPH Asia 2022
     </div>
-</div>
+  </footer>
 
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Figure preview">
+    <button class="lightbox-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <img alt="">
+  </div>
 
+  <script src="../../js/project.js"></script>
 </body>
 </html>
