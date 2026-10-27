@@ -1,0 +1,38 @@
+{
+  "name": "Bowen Zhang",
+  "profile": "https://scholar.google.com/citations?user=Y3G14vWvNa8C&hl=en",
+  "citations": 364,
+  "citations_since": 364,
+  "h_index": 8,
+  "h_index_since": 8,
+  "i10_index": 7,
+  "i10_index_since": 7,
+  "since_year": 2021,
+  "per_year": [
+    {
+      "year": 2021,
+      "citations": 1
+    },
+    {
+      "year": 2022,
+      "citations": 4
+    },
+    {
+      "year": 2023,
+      "citations": 15
+    },
+    {
+      "year": 2024,
+      "citations": 27
+    },
+    {
+      "year": 2025,
+      "citations": 67
+    },
+    {
+      "year": 2026,
+      "citations": 249
+    }
+  ],
+  "updated": "2026-10-27"
+}

@@ -49,6 +49,56 @@
     reveals.forEach(function (el) { el.classList.add('in'); });
   }
 
+  /* ---------- Scholar metrics (data/scholar.json, updated by GitHub Action) ---------- */
+  (function loadStats() {
+    var box = document.getElementById('stats');
+    if (!box || !window.fetch) return;
+    fetch('data/scholar.json', { cache: 'no-cache' })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (d) {
+        if (!d || typeof d.citations !== 'number') return;
+
+        box.querySelectorAll('[data-key]').forEach(function (el) {
+          var v = d[el.getAttribute('data-key')];
+          if (typeof v !== 'number') return;
+          if (reduceMotion) { el.textContent = v; return; }
+          var start = null, dur = 1200;
+          el.textContent = '0';
+          (function step(ts) {
+            if (!start) start = ts;
+            var p = Math.min((ts - start) / dur, 1);
+            el.textContent = Math.round(v * (1 - Math.pow(1 - p, 3)));
+            if (p < 1) requestAnimationFrame(step);
+          })(performance.now());
+        });
+
+        var years = (d.per_year || []).slice(-6);
+        var max = Math.max.apply(null, years.map(function (y) { return y.citations; }).concat(1));
+        var chart = document.getElementById('statChart');
+        var labels = document.getElementById('statYears');
+        years.forEach(function (y) {
+          var bar = document.createElement('div');
+          bar.className = 'bar';
+          bar.style.height = (y.citations / max * 100) + '%';
+          bar.setAttribute('data-y', y.year);
+          bar.setAttribute('data-c', y.citations);
+          chart.appendChild(bar);
+          var lab = document.createElement('span');
+          lab.textContent = String(y.year).slice(-2);
+          labels.appendChild(lab);
+        });
+
+        box.hidden = false;
+        var note = document.getElementById('statsNote');
+        if (note && d.updated) {
+          note.innerHTML = 'Updated ' + d.updated + ' · via <a href="' + (d.profile || '#') +
+            '" target="_blank" rel="noopener">Google Scholar</a>';
+          note.hidden = false;
+        }
+      })
+      .catch(function () { /* keep hidden if data is unavailable */ });
+  })();
+
   /* ---------- Publication filter & search ---------- */
   var pubs = Array.prototype.slice.call(document.querySelectorAll('.pub'));
   var groups = document.querySelectorAll('.year-group');

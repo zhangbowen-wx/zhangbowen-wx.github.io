@@ -93,6 +93,27 @@
             </div>
           </div>
         </div>
+
+        <!-- Filled from data/scholar.json (auto-updated weekly by .github/workflows/update-scholar.yml) -->
+        <div class="stats" id="stats" hidden>
+          <div class="stat">
+            <div class="stat-num grad-text" data-key="citations">–</div>
+            <div class="stat-label">Citations</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num" data-key="h_index">–</div>
+            <div class="stat-label">h-index</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num" data-key="i10_index">–</div>
+            <div class="stat-label">i10-index</div>
+          </div>
+          <div class="stat" title="Citations per year">
+            <div class="stat-chart" id="statChart"></div>
+            <div class="stat-years" id="statYears"></div>
+          </div>
+        </div>
+        <p class="stats-note" id="statsNote" hidden></p>
       </div>
     </section>
 
