@@ -260,7 +260,7 @@ section.block + section.block { border-top: 1px solid var(--border); }
 .year-label::after { content: ""; flex: 1; height: 1px; background: var(--border); }
 
 .pub {
-  display: grid; grid-template-columns: 200px 1fr; gap: 24px;
+  display: grid; grid-template-columns: 240px 1fr; gap: 24px;
   background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
   padding: 18px; margin-bottom: 14px; transition: transform .25s, box-shadow .25s, border-color .25s;
 }
@@ -268,16 +268,17 @@ section.block + section.block { border-top: 1px solid var(--border); }
 .pub.hidden { display: none; }
 .pub-thumb {
   position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 16 / 10;
-  background: var(--bg-soft); display: grid; place-items: center;
+  background: var(--bg-soft); border: 1px solid var(--border);
 }
-.pub-thumb img { width: 100%; height: 100%; object-fit: cover; background: #fff; }
-.pub-thumb.gen { background: var(--thumb, var(--grad)); color: #fff; }
-.pub-thumb.gen span { font-weight: 800; font-size: 20px; letter-spacing: -0.01em; text-align: center; padding: 0 10px; line-height: 1.2; text-shadow: 0 2px 12px rgba(0,0,0,.2); }
-.pub-thumb.gen::before {
-  content: ""; position: absolute; inset: 0; opacity: .25;
-  background-image: radial-gradient(rgba(255,255,255,.9) 1px, transparent 1.4px);
-  background-size: 12px 12px;
+.pub-thumb img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  transition: transform .5s cubic-bezier(.2, .7, .2, 1);
 }
+.pub:hover .pub-thumb img { transform: scale(1.05); }
+/* Diagram-style figures: show whole image on white instead of cropping */
+.pub-thumb.fit { background: #fff; }
+.pub-thumb.fit img { object-fit: contain; padding: 8px; }
+.pub:hover .pub-thumb.fit img { transform: scale(1.03); }
 .pub-venue {
   position: absolute; top: 8px; left: 8px; z-index: 1; font-size: 11px; font-weight: 700; font-family: var(--mono);
   padding: 3px 8px; border-radius: 6px; background: rgba(15,23,42,.78); color: #fff; letter-spacing: .02em;
@@ -362,7 +363,7 @@ footer a { color: var(--text-2); }
   .nav-links.open { display: flex; }
   .nav-links a { padding: 12px 14px; }
   .pub { grid-template-columns: 1fr; }
-  .pub-thumb { aspect-ratio: 16 / 7; }
+  .pub-thumb { aspect-ratio: 16 / 9; }
   .news li { grid-template-columns: 1fr; gap: 2px; }
   section.block { padding: 56px 0; }
 }
